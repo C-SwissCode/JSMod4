@@ -9,27 +9,42 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, diceDOM;
+//Game Initialization
+// var scores, roundScore, activePlayer, initializeGame, diceDOM;
+// diceDOM = document.querySelector('.dice');
 
-scores = [0, 0];
-roundScore = 0;
-activePlayer = 0;
-diceDOM = document.querySelector('.dice');
+// initializeGame = function () {
+//   scores = [0, 0];
+//   roundScore = 0;
+//   activePlayer = 0;
+//   zeroScores('.player-score');
+//   zeroScores('player-current-score');
+//   document.querySelector('player-0-panel').classList.add('active');
+//   document.querySelector('player-1-panel').classList.remove('active');
+// }
+// document.addEventListener('load', initializeGame);
+
+//Switch Players
+
+
+
+
+//New Game
+// document.querySelector('.btn-new').addEventListener('click', initializeGame);
+
+
 
 /**************************************
  * Show dice, update current score, erase current score if rolled 1 and switch users, hold button to add current score to total score and swtich user
  */
 
 //Zero out scores
-var zeroScores = function (classes) {
+function zeroScores(classes) {
   var x = document.querySelectorAll(classes);
   for (i = 0; i < x.length; i++) {
     x[i].textContent = 0;
   }
 }
-
-zeroScores('.player-current-score');
-zeroScores('.player-score');
 
 //Rolling the dice
 document.querySelector('.btn-roll').addEventListener('click', function () {
@@ -67,3 +82,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
   document.querySelector('.player-1-panel').classList.toggle('active');
   diceDOM.display = 'none';
 })
+
+
+//Repeating Code:
+// -Switching players -initializing game
