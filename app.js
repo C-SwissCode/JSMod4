@@ -10,27 +10,34 @@ GAME RULES:
 */
 
 //Game Initialization
-// var scores, roundScore, activePlayer, initializeGame, diceDOM;
-// diceDOM = document.querySelector('.dice');
+var scores, roundScore, activePlayer, diceDOM;
+diceDOM = document.querySelector('.dice');
 
-// initializeGame = function () {
-//   scores = [0, 0];
-//   roundScore = 0;
-//   activePlayer = 0;
-//   zeroScores('.player-score');
-//   zeroScores('player-current-score');
-//   document.querySelector('player-0-panel').classList.add('active');
-//   document.querySelector('player-1-panel').classList.remove('active');
-// }
-// document.addEventListener('load', initializeGame);
+function initializeGame() {
+  //Switch active player back to player 1
+  var activeDOM0, activeDOM1;
+  activeDOM0 = document.querySelector('.player-0-panel');
+  activeDOM1 = document.querySelector('.player-1-panel');
+  if (activePlayer === 1) {
+    activeDOM0.classList.add('active');
+    activeDOM1.classList.remove('active');
+  }
 
-//Switch Players
-
-
+  //Load zero scores, hide dice, and reset active player
+  scores = [0, 0];
+  roundScore = 0;
+  activePlayer = 0;
+  zeroScores('.player-score');
+  zeroScores('.player-current-score');
+  diceDOM.style.display = 'none';
+}
+// document.addEventListener('DOMContentLoaded', initializeGame);
+window.addEventListener('load', initializeGame);
+// this loads after all files have been loaded including stylesheets and images. Where 'document.addEventListener('DOMContentLoaded', initializeGame); loads after only the full HTML document has been completely loaded and before any other files.
 
 
 //New Game
-// document.querySelector('.btn-new').addEventListener('click', initializeGame);
+document.querySelector('.btn-new').addEventListener('click', initializeGame);
 
 
 
@@ -82,7 +89,3 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
   document.querySelector('.player-1-panel').classList.toggle('active');
   diceDOM.display = 'none';
 })
-
-
-//Repeating Code:
-// -Switching players -initializing game
