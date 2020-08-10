@@ -75,8 +75,8 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
       scores[activePlayer] = 0;
       roundScore = 0;
       document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
-      nextPlayer();
       document.getElementById('current-' + activePlayer).textContent = roundScore;
+      nextPlayer();
       prvRoll = 0;
     } else if (dice !== 1) {
       diceDOM.src = 'dice-' + dice + '.png';
