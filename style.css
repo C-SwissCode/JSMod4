@@ -177,9 +177,23 @@ i {
   color: #EB4D4D;
 }
 
-.winscore {
+/* .winscore {
   position: relative;
   text-align: center;
   border-style: solid;
   left: 42%;
+} */
+
+.winscore {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 520px;
+  color: #555;
+  font-size: 18px;
+  font-family: 'Lato';
+  text-align: center;
+  padding: 10px;
+  width: 160px;
+  text-transform: uppercase;
 }

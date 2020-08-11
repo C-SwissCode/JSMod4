@@ -42,10 +42,6 @@ function initializeGame() {
   zeroScores('.player-score');
   zeroScores('.player-current-score');
   diceDOM.style.display = 'none';
-  document.querySelector('.winscore').defaultValue = 20;
-  maxscore = parseInt(document.querySelector('.winscore').value);
-  console.log(typeof maxscore);
-  console.log(maxscore);
 }
 
 //New Game
@@ -109,6 +105,15 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
     document.getElementById('current-' + activePlayer).textContent = roundScore;
 
     //Check if player won the game
+    var input = document.querySelector('.winscore').value;
+    var maxscore;
+    if (input) {
+      maxscore = input;
+    } else {
+      maxscore = 10;
+    }
+    console.log(typeof maxscore);
+    console.log(maxscore);
     if (scores[activePlayer] >= maxscore) {
       document.getElementById('name-' + activePlayer).textContent = 'Winner!!';
       document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
