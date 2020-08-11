@@ -176,3 +176,10 @@ i {
   font-weight: 300;
   color: #EB4D4D;
 }
+
+.winscore {
+  position: relative;
+  text-align: center;
+  border-style: solid;
+  left: 42%;
+}

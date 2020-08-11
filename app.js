@@ -14,11 +14,12 @@ GAME RULES:
  * Game initialization
  */
 
-var scores, roundScore, activePlayer, diceDOM, btnRoll, btnHold, gamePlaying;
+var scores, roundScore, activePlayer, diceDOM, btnRoll, btnHold, gamePlaying, maxscore;
 diceDOM = document.querySelector('.dice');
 btnRoll = document.querySelector('.btn-roll');
 btnHold = document.querySelectorAll('.btn-hold');
 initializeGame();
+
 
 function initializeGame() {
   //Switch active player back to player 1
@@ -41,6 +42,10 @@ function initializeGame() {
   zeroScores('.player-score');
   zeroScores('.player-current-score');
   diceDOM.style.display = 'none';
+  document.querySelector('.winscore').defaultValue = 20;
+  maxscore = parseInt(document.querySelector('.winscore').value);
+  console.log(typeof maxscore);
+  console.log(maxscore);
 }
 
 //New Game
@@ -68,9 +73,7 @@ var prvRoll;
 //Rolling the dice
 document.querySelector('.btn-roll').addEventListener('click', function () {
   if (gamePlaying) {
-    //Update current score if 1 then zero out current and switch player
     var dice = Math.floor(Math.random() * 6) + 1;
-    dice = 6;
     if (prvRoll === 6) {
       scores[activePlayer] = 0;
       roundScore = 0;
@@ -84,7 +87,6 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
       roundScore += dice;
       document.getElementById('current-' + activePlayer).textContent = roundScore;
       prvRoll = dice;
-      console.log(prvRoll);
     } else {
       roundScore = 0;
       document.getElementById('current-' + activePlayer).textContent = roundScore;
@@ -107,7 +109,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
     document.getElementById('current-' + activePlayer).textContent = roundScore;
 
     //Check if player won the game
-    if (scores[activePlayer] >= 50) {
+    if (scores[activePlayer] >= maxscore) {
       document.getElementById('name-' + activePlayer).textContent = 'Winner!!';
       document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
       document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
