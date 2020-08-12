@@ -79,14 +79,14 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
   if (gamePlaying) {
     var dice = Math.floor(Math.random() * 6) + 1;
     var dice2 = Math.floor(Math.random() * 6) + 1;
-    if (prvRoll === 6) {
+    if (prvRoll === 6 && dice === 6) {
       scores[activePlayer] = 0;
       roundScore = 0;
       document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
       document.getElementById('current-' + activePlayer).textContent = roundScore;
       nextPlayer();
       prvRoll = 0;
-    } else if (dice !== 1 && dice2 !==1) {
+    } else if (dice !== 1 && dice2 !== 1) {
       diceDOM1.src = 'dice-' + dice + '.png';
       diceDOM1.style.display = 'block';
       diceDOM2.src = 'dice-' + dice2 + '.png';
