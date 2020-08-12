@@ -14,11 +14,18 @@ GAME RULES:
  * Game initialization
  */
 
-var scores, roundScore, activePlayer, diceDOM, btnRoll, btnHold, gamePlaying, maxscore;
-diceDOM = document.querySelector('.dice');
+var scores, roundScore, activePlayer, diceDOM1, diceDOM2, btnRoll, btnHold, gamePlaying, maxscore;
+diceDOM1 = document.querySelector('.dice');
+diceDOM2 = document.querySelector('.dice2');
 btnRoll = document.querySelector('.btn-roll');
 btnHold = document.querySelectorAll('.btn-hold');
 initializeGame();
+
+//Hide dice
+function hideDice() {
+  diceDOM1.style.display = 'none';
+  diceDOM2.style.display = 'none';
+}
 
 
 function initializeGame() {
@@ -41,7 +48,7 @@ function initializeGame() {
   activePlayer = 0;
   zeroScores('.player-score');
   zeroScores('.player-current-score');
-  diceDOM.style.display = 'none';
+  hideDice();
 }
 
 //New Game
@@ -54,6 +61,7 @@ function zeroScores(classes) {
     x[i].textContent = 0;
   }
 }
+
 
 //Ways to execute things when the page loads:
 // document.addEventListener('DOMContentLoaded', initializeGame);
@@ -70,6 +78,7 @@ var prvRoll;
 document.querySelector('.btn-roll').addEventListener('click', function () {
   if (gamePlaying) {
     var dice = Math.floor(Math.random() * 6) + 1;
+    var dice2 = Math.floor(Math.random() * 6) + 1;
     if (prvRoll === 6) {
       scores[activePlayer] = 0;
       roundScore = 0;
@@ -77,10 +86,12 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
       document.getElementById('current-' + activePlayer).textContent = roundScore;
       nextPlayer();
       prvRoll = 0;
-    } else if (dice !== 1) {
-      diceDOM.src = 'dice-' + dice + '.png';
-      diceDOM.style.display = 'block';
-      roundScore += dice;
+    } else if (dice !== 1 && dice2 !==1) {
+      diceDOM1.src = 'dice-' + dice + '.png';
+      diceDOM1.style.display = 'block';
+      diceDOM2.src = 'dice-' + dice2 + '.png';
+      diceDOM2.style.display = 'block';
+      roundScore += dice + dice2;
       document.getElementById('current-' + activePlayer).textContent = roundScore;
       prvRoll = dice;
     } else {
@@ -97,7 +108,7 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
 document.querySelector('.btn-hold').addEventListener('click', function () {
   if (gamePlaying) {
     prvRoll = 0;
-    diceDOM.style.display = 'none';
+    hideDice();
     //Update total score and clear current score
     scores[activePlayer] += roundScore;
     roundScore = 0;
@@ -127,7 +138,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
 })
 
 function nextPlayer() {
-  diceDOM.style.display = 'none';
+  hideDice();
   activePlayer = activePlayer === 0 ? 1 : 0;
   document.querySelector('.player-0-panel').classList.toggle('active');
   document.querySelector('.player-1-panel').classList.toggle('active');
